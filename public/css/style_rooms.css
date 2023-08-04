@@ -1,0 +1,56 @@
+
+.btn,a,a:hover{text-decoration: none;-webkit-transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-ms-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;transition: all 0.3s ease-in-out;outline:0 ;}
+
+.btn{border:none !important;border-radius: 0;padding: 5px 30px;}
+.btn-default{background:#bfa145;box-shadow: none !important;color: #fff;}
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active{box-shadow: none !important;background:#756534;color: #fff;outline: none !important;}
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus{background-color: #bfa145;border-color: #bfa145;}
+.pagination>li>a, .pagination>li>span{color: #bfa145;}
+.spacer{padding:6em 0; }
+
+
+/*rooms and tariff*/
+.rooms{margin-bottom: 2em;}
+.rooms .info{padding: 1.5em;background-color: #E8E7E0;}
+
+
+.room-features .amenitites li{margin-bottom: 1em;}
+.room-features .size-price{background-color: #C7C5BB;padding: 2em 0;text-align: center;color: #fff;height: 10.97em;line-height: 3em;}
+.room-features .size-price span{display: block;font-size: 2em;}
+
+
+.rooms {
+     /* Ajustez la hauteur maximale selon vos besoins */
+     /* Cache le contenu dépassant de la hauteur maximale définie */
+     margin-bottom: 60px;
+     margin-top: 80px;
+     margin-left: 50px;
+
+  }
+  
+  /* Ajustez la taille de l'image pour remplir la div parent "rooms" */
+  .rooms img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajuste l'image pour remplir la div en conservant son ratio */
+    
+  }
+  
+  /* Pour assurer un espacement uniforme autour du contenu dans la div "rooms" */
+  .rooms .info {
+    padding: 15px;
+    
+  }
+  h2.title{font-size: 2em;line-height: 3em;}
+  
+  
+  
+  
+  
+  
+  
+
+
+
+

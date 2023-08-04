@@ -1,0 +1,49 @@
+/* POPPINS FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background: url("../img/about/about-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+
+.card {
+
+    /* Styles pour la carte du formulaire */
+
+    margin-top: 80px; /* Ajoutez la marge souhaitée ici */
+    color: #fff; /* Couleur du texte en blanc */
+    background-color: #000; /* Couleur d'arrière-plan en noir */
+
+}
+.form-control {
+    outline:none !important;
+    border: 2px solid #ccc; /* Ajoutez une bordure de couleur grise par défaut */
+}
+
+.form-control:focus {
+    /* Styles pour la bordure lorsque l'input est en focus */
+    border-color: #000 !important;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
