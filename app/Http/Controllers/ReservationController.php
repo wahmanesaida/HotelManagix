@@ -86,11 +86,48 @@ class ReservationController extends Controller
         //
     }
 
+
     // availabe rooms
-    function available_rooms(Request $request,$checkin_date){
+    //function available_rooms(Request $request,$checkin_date){
        // return response()->json($checkin_date);
         //we will request this by ajax
-        $availble=DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM reservations WHERE '$checkin_date' BETWEEN departure_date AND release_date)");
-        return response()->json(['data'=>$availble]);
+       // $availble=DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM reservations WHERE '$checkin_date' BETWEEN departure_date AND release_date)");
+       // return response()->json(['data'=>$availble]);
+   // }
+
+   public function available_roomTypes(Request $request, $checkin_date)
+{
+    $availableRoomTypes = DB::select("
+        SELECT rt.id, rt.title
+        FROM room_types rt
+        WHERE EXISTS (
+            SELECT 1
+            FROM rooms r
+            WHERE r.room_type_id = rt.id
+                AND r.id NOT IN (
+                    SELECT room_id
+                    FROM reservations
+                    WHERE '$checkin_date' BETWEEN departure_date AND release_date
+                )
+        )
+    ");
+
+    return response()->json(['data' => $availableRoomTypes]);
+}
+
+    public function available_rooms(Request $request, $checkin_date, $room_type_id)
+    {
+        $availableRooms = DB::select("
+            SELECT r.id, r.title
+            FROM rooms r
+            WHERE r.room_type_id = $room_type_id
+                AND r.id NOT IN (
+                    SELECT room_id
+                    FROM reservations
+                    WHERE '$checkin_date' BETWEEN departure_date AND release_date
+                )
+        ");
+
+        return response()->json(['data' => $availableRooms]);
     }
 }

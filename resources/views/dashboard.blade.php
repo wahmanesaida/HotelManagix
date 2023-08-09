@@ -6,3 +6,5 @@
 <h1><a href="{{url('admin/roomtype')}}" class="float-right btn btn-success btn-sm">RoomType</a></h1>
 
 <h1><a href="{{url('admin/room')}}" class="float-right btn btn-success btn-sm">Rooms</a></h1>
+
+<h1><a href="{{url('admin/client')}}" class="float-right btn btn-success btn-sm">Client</a></h1>

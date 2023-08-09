@@ -9,6 +9,7 @@ use App\Http\Controllers\userauthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomTypeController;
+use App\Http\Controllers\ClientConroller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,7 +38,11 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('/dashboard',[DashboardController::class, 'index']);
     //booking
     Route::get('/reservation/{id}/delete',[ReservationController::class,'destroy']);
-    Route::get('/reservation/available-rooms/{departure_date}',[ReservationController::class,'available_rooms']);
+    //Route::get('/reservation/available-rooms/{departure_date}',[ReservationController::class,'available_rooms']);
+
+    Route::get('/reservation/available-roomtypes/{departure_date}', [ReservationController::class, 'available_roomTypes']);
+    Route::get('/reservation/available-rooms/{departure_date}/{room_type_id}', [ReservationController::class, 'available_rooms']);
+
     Route::resource('/reservation',ReservationController::class);
     //RoomType Crud operation
     Route::get('/roomtype/{id}/delete', [RoomTypeController::class, 'destroy']);
@@ -46,6 +51,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     //Room CRUD operation
     Route::get('/room/{id}/delete', [RoomController::class, 'destroy']);
     Route::resource('/room', RoomController::class);
+
+    //Client CRUD
+    Route::get('/client/{id}/delete', [ClientConroller::class, 'destroy']);
+    Route::resource('/client', ClientConroller::class);
 
 
 });
