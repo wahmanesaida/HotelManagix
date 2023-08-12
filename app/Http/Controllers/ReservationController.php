@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Client;
 use App\Models\Reservation;
+
 
 class ReservationController extends Controller
 {
@@ -37,22 +39,55 @@ class ReservationController extends Controller
             'room_id'=>'required',
             'total_adults'=>'required',
             'total_children'=>'required',
+            'email' => 'required|email',
 
         ]);
+        // Récupérer l'utilisateur connecté
+    $user = Auth::user();
 
+    // Recherchez un client correspondant à l'utilisateur connecté
+    $client = Client::where('user_id', $user->id)->first();
 
+    $data = new Reservation;
+    $data->departure_date = $request->departure_date;
+    $data->release_date = $request->release_date;
+    $data->room_id = $request->room_id;
+    $data->total_adults = $request->total_adults;
+    $data->total_children = $request->total_children;
+    $data->email = $request->email;
 
-        $data=new Reservation;
-        $data->client_id=$request->client_id;
-        $data->departure_date=$request->departure_date;
-        $data->release_date=$request->release_date;
-        $data->room_id=$request->room_id;
-        $data->total_adults=$request->total_adults;
-        $data->total_children=$request->total_children;
-        $data->save();
+    // Utilisation de la référence pour déterminer l'origine de la réservation
+    if ($request->reference == 'customer') {
+        // Si la référence est 'customer', utilisez l'ID du client connecté ou créez un client automatiquement
+        if ($client) {
+            $data->client_id = $client->id;
+        } else {
+            $newClient = new Client;
+            $newClient->user_id = $user->id;
+            $newClient->name=$user->name;
+            $newClient->email=$user->email;
+            $newClient->phone='00';
+            $newClient->Address='unknown';
+            $newClient->photo='unknown';
+            $newClient->CIN='unknown';
+            $newClient->password='unknown';
+            $newClient->save();
 
-        return redirect('admin/reservation/create')->with('success','Data has been added.');
+            $data->client_id = $newClient->id;
+        }
+    } else {
+        // Si la référence est autre que 'customer', utilisez l'ID de client provenant du formulaire de réception
+        $data->client_id = $request->client_id;
     }
+
+    $data->save();
+
+    if ($request->reference == 'customer') {
+        return redirect('Booking_customer')->with('success', 'Booking has been added');
+    }
+
+    return redirect('admin/reservation/create')->with('success', 'Booking has been added.');
+}
 
     /**
      * Display the specified resource.
@@ -129,5 +164,13 @@ class ReservationController extends Controller
         ");
 
         return response()->json(['data' => $availableRooms]);
+    }
+
+
+
+
+
+    function customer_create(){
+        return view('Booking_customer.customer_create');
     }
 }

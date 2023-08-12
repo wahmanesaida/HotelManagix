@@ -7,7 +7,7 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-body{
+.aaa{
     background: url("../img/about/about-bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;

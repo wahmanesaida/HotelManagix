@@ -29,6 +29,10 @@ Route::get('/rooms',[RoomController::class, 'room']);
 Route::get('/room-detail',[RoomTypeController::class, 'roomdetails']);
 Route::get('/restaurant',[RestaurantController::class, 'restaurant']);
 
+// Booking_custmer
+
+Route::get('/Booking_customer', [ReservationController::class, 'customer_create']);
+
 
 Auth::routes();
 
