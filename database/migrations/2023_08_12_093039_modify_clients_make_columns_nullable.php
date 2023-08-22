@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::table('clients', function (Blueprint $table) {
 
-            $table->string('phone')->nullable();
-            $table->string('CIN')->nullable();
-            $table->string('Adresse')->nullable();
-            $table->string('photo')->nullable();
+            $table->string('phone')->nullable()->change();
+            $table->string('CIN')->nullable()->change();
+            $table->string('Address')->nullable()->change();
+            $table->string('photo')->nullable()->change();
         });
     }
 
@@ -25,6 +25,13 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('clients', function (Blueprint $table) {
+
+            $table->string('phone')->nullable(false)->change();
+            $table->string('CIN')->nullable(false)->change();
+            $table->string('Address')->nullable(false)->change();
+            $table->string('photo')->nullable(false)->change();
+        });
 
     }
 };

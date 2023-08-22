@@ -15,23 +15,23 @@
 
 
     <!-- modif -->
-    <link rel="icon" href="img/favicon.png" type="image/png">
-    <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
-	<link rel="stylesheet" href="vendors/linericon/style.css">
-    <link rel="stylesheet" href="vendors/magnefic-popup/magnific-popup.css">
-    <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
-    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
+    <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ asset('vendors/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/themify-icons/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/linericon/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/magnefic-popup/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/owl-carousel/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/owl-carousel/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/nice-select/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style_rooms.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/about-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header-about.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/signup.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/reservation.css') }}">
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style_rooms.css">
-    <link rel="stylesheet" href="css/about-style.css">
-    <link rel="stylesheet" href="css/restaurant.css">
-    <link rel="stylesheet" href="css/header-about.css">
-    <link rel="stylesheet" href="css/signup.css">
-    <link rel="stylesheet" href="css/reservation.css">
 
 
 
@@ -107,7 +107,7 @@
                                                     <li class="nav-item"><a class="nav-link" href="restaurant.php">Restaurant</a></li>
 
                                                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                                                    <li class="nav-item"><a class="nav-link" href="/Booking_customer">Booking</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="Booking_customer/create">Booking</a></li>
                                                     <li class="nav-item dropdown">
                                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                                             {{ Auth::user()->name }}

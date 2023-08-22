@@ -24,14 +24,14 @@ class AdminMiddleware
                 return $next($request);
             }
             else if(auth()->user()->role_as == '0'){
-                return redirect('/homehotel');
+                return redirect('/home');
 
             }
         }
-        else{
+        /**else{
             return redirect('/home');
 
-        }
+        }**/
 
     }
 }

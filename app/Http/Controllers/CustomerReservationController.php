@@ -12,7 +12,7 @@ use App\Models\Client;
 use App\Models\Reservation;
 
 
-class ReservationController extends Controller
+class CustomerReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,8 +27,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        $clients=Client::all();
-        return view('reservation.create', ['data'=>$clients]);
+        return view('Booking_customer.create');
     }
 
     /**
@@ -87,7 +86,7 @@ class ReservationController extends Controller
     $data->save();
 
     if ($request->reference == 'customer') {
-        return redirect('Booking_customer')->with('success', 'Booking has been added');
+        return redirect('Booking_customer/create')->with('success', 'Booking has been added');
     }
 
     return redirect('admin/reservation/create')->with('success', 'Booking has been added.');
@@ -174,9 +173,7 @@ class ReservationController extends Controller
 
 
 
-    function customer_create(){
-        return view('Booking_customer.customer_create');
-    }
+
 
     //show reservations list
     function showlist(){
@@ -193,26 +190,23 @@ class ReservationController extends Controller
             Mail::to($reservation->clients->email)->send(new ReservationValidationMail($reservation));
 
             // Mettez à jour le statut de la réservation
-            $reservation->status = 'validated';
+            $reservation->status = 'validée';
             $reservation->save();
-            return redirect()->back()->with('success', 'Reservation successfully validated.');
         }
-        if($reservation->rooms->room_status == 'Occupied'){
-            $error='Validation failed: Room is currently occupied !';
-        }
-        return redirect()->back()->with(['error' => $error]);
 
-
+        return redirect()->back()->with('success', 'Réservation validée avec succès.');
 }
 
     public function cancelReservation($id)
     {
-        $reservation=Reservation::with('rooms')->findOrFail($id);
-        if($reservation->rooms->room_status == 'Occupied'){
-            Mail::to($reservation->clients->email)->send(new ReservationCancellationMail($reservation));
-            $reservation->delete();
+        $reservation = Reservation::findOrFail($id);
 
-        }
+        // Envoyez un e-mail d'annulation
+        Mail::to($reservation->client->email)->send(new ReservationCancellationMail($reservation));
+
+        // Supprimez la réservation
+        $reservation->delete();
+
         return redirect()->back()->with('success', 'Réservation annulée avec succès.');
     }
 

@@ -10,6 +10,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\ClientConroller;
+use App\Http\Controllers\CustomerReservationController;
+use App\Http\Controllers\CheckController;
+use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\UsersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,7 +35,11 @@ Route::get('/restaurant',[RestaurantController::class, 'restaurant']);
 
 // Booking_custmer
 
-Route::get('/Booking_customer', [ReservationController::class, 'customer_create']);
+
+
+Route::get('/Booking_customer/available-roomtypes/{departure_date}', [CustomerReservationController::class, 'available_roomTypes']);
+Route::get('/Booking_customer/available-rooms/{departure_date}/{room_type_id}', [CustomerReservationController::class, 'available_rooms']);
+Route::resource('/Booking_customer', CustomerReservationController::class);
 
 
 Auth::routes();
@@ -46,6 +54,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
 
     Route::get('/reservation/available-roomtypes/{departure_date}', [ReservationController::class, 'available_roomTypes']);
     Route::get('/reservation/available-rooms/{departure_date}/{room_type_id}', [ReservationController::class, 'available_rooms']);
+    //reservation-list
+    Route::get('/reservations_list', [ReservationController::class, 'showlist']);
+    Route::get('/reservations_list/{id}/validate', [ReservationController::class, 'validateReservation'])->name('validateReservation');
+    Route::get('/reservations_list/{id}/cancelled', [ReservationController::class, 'cancelReservation'])->name('cancelReservation');
 
     Route::resource('/reservation',ReservationController::class);
     //RoomType Crud operation
@@ -59,6 +71,19 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     //Client CRUD
     Route::get('/client/{id}/delete', [ClientConroller::class, 'destroy']);
     Route::resource('/client', ClientConroller::class);
+
+    //Check Process
+    Route::get('/checkin', [CheckController::class, 'checkin']);
+    Route::get('/checkin/process/{id}', [CheckController::class, 'processCheckin'])->name('processCheckin');
+    Route::get('/checkout', [CheckController::class, 'checkout']);
+    Route::get('/checkout/process/{id}', [CheckController::class, 'processCheckout'])->name('processCheckout');
+
+    //History
+    Route::get('/History', [HistoryController::class, 'listt']);
+    //users
+    Route::get('/users/{id}/delete', [UsersController::class, 'destroy']);
+    Route::resource('/users', UsersController::class);
+
 
 
 });

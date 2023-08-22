@@ -16,7 +16,7 @@
         <section class="section-margin">
         <div class="container">
 
-         <!-- <p>L'ID de l'utilisateur connecté est : {{ auth()->user()->id }}</p> -->
+          <p>L'ID de l'utilisateur connecté est : {{ auth()->user()->id }}</p>
         @if($errors->any())
             @foreach($errors->all() as $error)
                 <p class="text-danger">{{$error}}</p>
@@ -27,14 +27,14 @@
         <p class="text-success">{{session('success')}}</p>
         @endif
 
-        <form method="post" enctype="multipart/form-data" action="{{url('admin/reservation')}}">
+        <form method="post" enctype="multipart/form-data" action="{{url('/Booking_customer')}}">
             @csrf
             <div id="form">
                 <h2 class="text-white text-center">Book Now</h2>
                 <div id="first-group">
                     <div id="content">
                         <i class="fa fa-user" aria-hidden="true"></i>
-                        <input type="text" name="email" id="input-group" value="{{ old('email') }}" placeholder="Email">
+                        <input type="text" name="email" id="input-group" value="{{ auth()->user()->email }}" placeholder="Email" readonly>
                     </div>
 
                     <div id="content">
@@ -101,7 +101,7 @@
             var _checkindate=$(this).val();
             //console.log(_checkindate);
             $.ajax({
-                url:"{{url('admin/reservation')}}/available-roomtypes/"+_checkindate,
+                url:"{{url('/Booking_customer')}}/available-roomtypes/"+_checkindate,
                 //by defaul type is get
                 dataType:'json',
                 beforeSend:function(){
@@ -124,7 +124,7 @@
             var _checkindate = $(".checkin-date").val();
             if (selectedRoomType !== '') {
                 $.ajax({
-                    url: "{{ url('admin/reservation/available-rooms') }}/" + _checkindate + "/" + selectedRoomType,
+                    url: "{{ url('/Booking_customer/available-rooms') }}/" + _checkindate + "/" + selectedRoomType,
                     dataType: 'json',
                     success: function(res){
                         var _roomContenu = '';

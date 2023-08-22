@@ -34,7 +34,7 @@ class LoginController extends Controller
             return redirect('/admin/dashboard');
         }
         if(auth()->user()->role_as == '0') {
-            return redirect('/homehotel');
+            return redirect('/home');
         }
 
     }
