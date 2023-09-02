@@ -16,7 +16,7 @@
         <p class="text-success">{{session('success')}}</p>
         @endif
         <div class="table-responsive">
-        <form method="POST" action="{{url('admin/users/'.$user->id)}}" enctype="multipart/form-data">
+        <form method="POST" action="{{url('admin/Account/'.$user->id)}}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="intro-y box p-5 ">
@@ -53,7 +53,7 @@
                     </div>
                     </div>
                     <div class="text-right mt-5">
-                        <a href="{{ url('admin/users') }}">
+                        <a href="{{ url('admin/Account') }}">
                             <button type="button" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
                         </a>
                         <button type="submit" class="btn btn-primary w-24">Update</button>

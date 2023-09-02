@@ -29,7 +29,9 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/homehotel',[HomehotelController::class, 'homehotel']);
+Route::get('/', function () {
+    return redirect('/home');
+});
 Route::get('/about',[AboutController::class, 'about']);
 
 Route::get('/header-about',[AboutController::class, 'headerAbout']);

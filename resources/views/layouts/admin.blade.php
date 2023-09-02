@@ -184,26 +184,33 @@
 
 
    </li>
+   @auth
    <li class="nav-item">
+
      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-
+     @if (Auth::user()->image)
+        <span class="user-profile"><img src="{{ asset('storage/' . Auth::user()->image) }}" class="img-circle" alt="user avatar"></span>
+    @else
         <span class="user-profile"><img src="{{ asset('storage/user/inconnu.jpg') }}" class="img-circle" alt="user avatar"></span>
-
+    @endif
      </a>
      <ul class="dropdown-menu dropdown-menu-right">
       <li class="dropdown-item user-details">
        <a href="">
           <div class="media">
-
-                <div class="avatar"><img class="align-self-start mr-3" src="{{ asset('storage/user/inconnu.jpg') }}" alt="user avatar"></div>
-
+          @if (Auth::user()->image)
+                <div class="avatar"><img class="align-self-start mr-3" src="{{ asset('storage/' . Auth::user()->image) }}" alt="user avatar"></div>
+           @else
+           <div class="avatar"><img class="align-self-start mr-3" src="{{  asset('storage/user/inconnu.jpg') }}" alt="user avatar"></div>
+           @endif
            <div class="media-body">
-           <h6 class="mt-2 user-title" style="color:black">saida</h6>
-           <p class="user-subtitle" style="color:black">saida@gmail.com</p>
+           <h6 class="mt-2 user-title" style="color:black">{{ Auth::user()->name }}</h6>
+           <p class="user-subtitle" style="color:black">{{ Auth::user()->email }}</p>
            </div>
           </div>
          </a>
        </li>
+       @endauth
 
        <li class="dropdown-divider"></li>
        <li class="dropdown-item"><a class="icon-wallet mr-2" href="{{url('admin/Account')}}"></a> Account</li>

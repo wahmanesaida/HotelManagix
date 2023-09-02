@@ -10,7 +10,7 @@
                     @if(Session::has('success'))
                     <p class="text-success">{{session('success')}}</p>
                     @endif
-                        
+
                             <div class="profile-img">
                                 @if($user->image)
                                     <img  src="{{ asset('storage/'.$user->image) }}" alt="profile" class="profile-img" />
@@ -19,7 +19,7 @@
                                 @endif
                             </div>
                         </div>
-                        
+
                     <div class="col-md-7 offset-md-1">
                         <div class="row">
                             <div class="col-8">
@@ -27,15 +27,16 @@
                                             <h5 style="color:black">
                                                 {{$user->name}}
                                             </h5>
-                                            
-                                                 
+                                           <br>
+                                           
+
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                                         </li>
-                                        
+
                                     </ul>
-                                    </div> 
+                                    </div>
                             </div>
                             <div class="col-2">
                                 <a href="{{url('admin/Account/'.$user->id.'/edit')}}" type="submit" class="btn btn-info" name="btnAddMore">Update</a>
@@ -45,7 +46,7 @@
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label style="color:black">Name</label>
@@ -62,7 +63,7 @@
                                                 <p>{{$user->email}}</p>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label style="color:black">Role</label>
@@ -74,15 +75,15 @@
                                             </div>
                                         </div>
 
-        
+
 
                             </div>
-                            
+
                         </div>
-                        
-                        
+
+
                     </div>
                 </div>
                 </div>
-            </form> 
+            </form>
 @endsection

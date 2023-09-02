@@ -71,7 +71,7 @@ class CustomerReservationController extends Controller
             $newClient->email=$user->email;
             $newClient->phone='00';
             $newClient->Address='unknown';
-            $newClient->photo='unknown';
+            $newClient->photo='user/inconnu.jpg';
             $newClient->CIN='unknown';
             $newClient->password='unknown';
             $newClient->save();
