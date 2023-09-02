@@ -70,11 +70,7 @@ class CheckController extends Controller
             'payment_status' => $reservation->payement_status,
         ]);
         $reservation->delete();
-        //dd('Data in "histories" table:', History::all());
-        //$reservation->delete();
-        //return redirect('admin/checkout')->with('success', 'Checkout completed successfully.');
-
-
+        
 
         return redirect('admin/checkout')->with('success', 'Checkout completed successfully.');
 

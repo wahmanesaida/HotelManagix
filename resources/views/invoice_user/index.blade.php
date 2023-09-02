@@ -45,7 +45,7 @@
 
         <div class="row">
           <div class="col-xl-8">
-            
+
           @if(Session::has('success'))
             <p class="text-success">{{session('success')}}</p>
             @endif
@@ -167,11 +167,7 @@
           <div class="col-xl-10">
             <p>Thank you for your purchase</p>
           </div>
-          <div class="col-xl-2">
-            <button type="button" id="payNowButton" class="btn btn-primary text-capitalize" style="background-color:#CCA772 ;">
-                Pay Now
-            </button>
-</div>
+          
 
         </div>
 
