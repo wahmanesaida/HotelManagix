@@ -1,19 +1,22 @@
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
+@extends('layouts.admin')
+@section('content')
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-success">RoomDetails
-                <a href="{{url('admin/roomtype')}}" class="float-end btn btn-success btn-sm">View All</a>
+            <h6 class="m-0 font-weight-bold text-info">RoomDetails
+                <a href="{{url('admin/roomtype')}}" class="float-end btn btn-info btn-sm">View All</a>
             </h6>
         </div>
         <div class="card-body">
             @if(Session::has('success'))
             <p class="text-success">{{session('success')}}</p>
             @endif
+            @foreach($errors->all() as $error)
+            <p class="text-danger">{{ $error }}</p>
+            @endforeach
             <div class="table-responsive">
-                <form action="{{url('admin/roomtype')}}" method="post">
+                <form action="{{url('admin/roomtype')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <tr>
@@ -25,7 +28,44 @@
                             <td><textarea name="description" class="form-control" cols="30" rows="14"></textarea></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><input type="submit" class="btn btn-primary"></td>
+                            <th>Price</th>
+                            <td><input type="text" class="form-control" name="price"></td>
+                        </tr>
+                        <tr>
+                            <th>Photo 1</th>
+                            <td>
+                                <label for="imageInput" class="btn btn-info w-full cursor-pointer">Add Photo</label>
+                                <input id="imageInput" type="file" name="photo1" class="w-full h-full top-0 left-0 absolute opacity-0">
+                            </div>
+                            <div class="mt-3">
+                                <img id="selectedImage" src="#" alt="Selected Photo" class="hidden max-w-full h-auto mx-auto" style="max-width: 150px; max-height: 150px;">
+                            </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Photo 2</th>
+                            <td>
+                                <label for="imageInput2" class="btn btn-info w-full cursor-pointer">Add Photo</label>
+                                <input id="imageInput2" type="file" name="photo2" class="w-full h-full top-0 left-0 absolute opacity-0">
+                            </div>
+                            <div class="mt-3">
+                                <img id="selectedImage2" src="#" alt="Selected Photo" class="hidden max-w-full h-auto mx-auto" style="max-width: 150px; max-height: 150px;">
+                            </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Photo 3</th>
+                            <td>
+                                <label for="imageInput3" class="btn btn-info w-full cursor-pointer">Add Photo</label>
+                                <input id="imageInput3" type="file" name="photo3" class="w-full h-full top-0 left-0 absolute opacity-0">
+                            </div>
+                            <div class="mt-3">
+                                <img id="selectedImage3" src="#" alt="Selected Photo" class="hidden max-w-full h-auto mx-auto" style="max-width: 150px; max-height: 150px;">
+                            </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="submit" class="btn btn-info"></td>
                         </tr>
                     </table>
                 </form>
@@ -33,8 +73,7 @@
         </div>
     </div>
 
-    </div>
-    <!-- /.container-fluid -->
+
 
 
 
@@ -43,5 +82,62 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var imageInput = document.getElementById("imageInput");
+    var selectedImage = document.getElementById("selectedImage");
+    var imageInput2 = document.getElementById("imageInput2");
+    var selectedImage2 = document.getElementById("selectedImage2");
+    var imageInput3 = document.getElementById("imageInput3");
+    var selectedImage3 = document.getElementById("selectedImage3");
+
+    imageInput.addEventListener("change", function() {
+        var file = imageInput.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                selectedImage.src = e.target.result;
+                selectedImage.classList.remove("hidden");
+            };
+            reader.readAsDataURL(file);
+        } else {
+            selectedImage.src = "#";
+            selectedImage.classList.add("hidden");
+        }
+    });
+
+    imageInput2.addEventListener("change", function() {
+        var file2 = imageInput2.files[0];
+        if (file2) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                selectedImage2.src = e.target.result;
+                selectedImage2.classList.remove("hidden");
+            };
+            reader.readAsDataURL(file2);
+        } else {
+            selectedImage2.src = "#";
+            selectedImage2.classList.add("hidden");
+        }
+    });
+
+    imageInput3.addEventListener("change", function() {
+        var file3 = imageInput3.files[0];
+        if (file3) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                selectedImage3.src = e.target.result;
+                selectedImage3.classList.remove("hidden");
+            };
+            reader.readAsDataURL(file3);
+        } else {
+            selectedImage3.src = "#";
+            selectedImage3.classList.add("hidden");
+        }
+    });
+});
+</script>
+@endsection
 
 

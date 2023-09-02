@@ -1,5 +1,5 @@
-<!-- Begin Page Content -->
-<div class="container-fluid">
+@extends('layouts.admin')
+@section('content')
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -39,17 +39,17 @@
                     <div class="grid grid-cols-12 gap-x-5 mt-5">
                     <div class="col-span-12 2xl:col-span-6 mt-5">
                         <div>
-                            <label for="name" class="form-label">Name</label>
-                            <input id="name" type="text" class="form-control" name="name" placeholder="Entrer un nom" value="{{$data->name}}" required>
+                            <label for="name" class="form-label" style="color:black;"> <b>Name</b> </label>
+                            <input id="name" type="text" class="form-control" name="name"  value="{{$data->name}}" required>
                         </div>
                         <div class="mt-3.5">
-                            <label for="email" class="form-label">Email</label>
-                            <input id="email" type="email" class="form-control" name="email" placeholder="Entrer un email" value="{{$data->email}}" required>
+                            <label for="email" class="form-label" style="color:black;"> <b>Email</b> </label>
+                            <input id="email" type="email" class="form-control" name="email" style="color:black;"  value="{{$data->email}}" required>
                         </div>
                     </div>
                     <div class="col-span-12 2xl:col-span-6 mt-5">
                         <div>
-                            <label for="update-profile-form-1" class="form-label">Role</label>
+                            <label for="update-profile-form-1" class="form-label" style="color:black;"> <b>Role</b> </label>
                             <select class="form-select sm:mr-2" name="role_as" required>
                                 <option @if($data->role_as == 1) selected @endif value="1">Admin</option>
                                 <option @if($data->role_as == 0)  selected @endif value="0">user</option>
@@ -71,8 +71,7 @@
     </div>
 </div>
 
-</div>
-<!-- /.container-fluid -->
+
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -99,5 +98,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+@endsection
 
 

@@ -14,6 +14,10 @@ use App\Http\Controllers\CustomerReservationController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\InvoiceUserController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,13 +37,14 @@ Route::get('/rooms',[RoomController::class, 'room']);
 Route::get('/room-detail',[RoomTypeController::class, 'roomdetails']);
 Route::get('/restaurant',[RestaurantController::class, 'restaurant']);
 
-// Booking_custmer
-
-
-
+// Booking_customer
 Route::get('/Booking_customer/available-roomtypes/{departure_date}', [CustomerReservationController::class, 'available_roomTypes']);
 Route::get('/Booking_customer/available-rooms/{departure_date}/{room_type_id}', [CustomerReservationController::class, 'available_rooms']);
 Route::resource('/Booking_customer', CustomerReservationController::class);
+
+// Invoice_customer
+Route::get('/Invoice', [InvoiceUserController::class, 'index']);
+Route::get('/contact', [HomeController::class, 'contact']);
 
 
 Auth::routes();
@@ -83,8 +88,17 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     //users
     Route::get('/users/{id}/delete', [UsersController::class, 'destroy']);
     Route::resource('/users', UsersController::class);
-
-
+    //profile
+    Route::resource('/Account', ProfilController::class);
+    //Invoice
+    Route::get('/invoice', [InvoiceController::class, 'create']);
+    Route::get('invoice/get-reservation-info/{client_id}', [InvoiceController::class, 'getInfo']);
+    Route::get('invoice/get-reservation-info/{client_id}/{reservation_id_placeholder}', [InvoiceController::class, 'getInvoice']);
+    Route::post('/process-payment/{client_id}/{reservation_id}', [InvoiceController::class, 'processPayment']);
+    Route::get('/payment/success', [InvoiceController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('/payment/fail', [InvoiceController::class, 'paymentFail'])->name('payment.fail');
+    Route::get('/success', [InvoiceController::class, 'successpage']);
+    Route::resource('/aboutpage', AboutController::class);
 
 });
 

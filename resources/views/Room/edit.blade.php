@@ -1,11 +1,11 @@
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
+@extends('layouts.admin')
+@section('content')
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-success">Edit Room
-                <a href="{{url('admin/room')}}" class="float-end btn btn-success btn-sm">View All</a>
+            <h6 class="m-0 font-weight-bold text-info">Edit Room
+                <a href="{{url('admin/room')}}" class="float-end btn btn-info btn-sm">View All</a>
             </h6>
         </div>
         <div class="card-body">
@@ -58,7 +58,7 @@
 
 
                         <tr>
-                            <td colspan="2"><input type="submit" class="btn btn-primary" value="Update"></td>
+                            <td colspan="2"><input type="submit" class="btn btn-info" value="Update"></td>
                         </tr>
                     </table>
                 </form>
@@ -66,8 +66,7 @@
         </div>
     </div>
 
-    </div>
-    <!-- /.container-fluid -->
+    
 
 
 
@@ -75,6 +74,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-
+@endsection
 
 

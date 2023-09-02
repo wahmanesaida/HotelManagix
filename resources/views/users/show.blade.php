@@ -1,6 +1,6 @@
+@extends('layouts.admin')
+@section('content')
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -17,11 +17,11 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Photo</th>
-                        <th>Role</th>
+                        <th> <b>id</b> </th>
+                        <th> <b>Name</b> </th>
+                        <th> <b>Email</b> </th>
+                        <th> <b>Photo</b> </th>
+                        <th> <b>Role</b> </th>
 
                     </tr>
                 </thead>
@@ -57,8 +57,7 @@
     </div>
 </div>
 
-</div>
-<!-- /.container-fluid -->
+
 
 
 
@@ -66,6 +65,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-
+@endsection
 
 

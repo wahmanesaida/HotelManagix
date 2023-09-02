@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reservation;
+use App\Models\History;
 
 class CheckController extends Controller
 {
@@ -47,7 +48,8 @@ class CheckController extends Controller
 {
     $reservation = Reservation::findOrFail($id);
 
-    if ($reservation->status === 'validated' && $reservation->checkin === 'checked' && $reservation->checkout === 'unchecked' && $reservation->payment_status === 'paid') {
+
+    if ($reservation->status == 'validated' && $reservation->checkin == 'checked' && $reservation->checkout == 'unchecked' && $reservation->payement_status == 'paid') {
 
         $reservation->rooms->room_status = 'available';
         $reservation->rooms->save();
@@ -61,22 +63,31 @@ class CheckController extends Controller
             'reservation_id' => $reservation->id,
             'room_type'=>$reservation->rooms->Roomtype->title,
             'room'=>$reservation->rooms->title,
-            'email' => $reservation->client->email,
-            'CIN'=>$reservation->clients->CIN,
+            'email' => $reservation->email,
+            'CIN' => $reservation->clients->CIN,
             'checkin_date' => $reservation->checkin_date,
             'checkout_date' => now(),
-            'payment_status' => $reservation->payment_status,
+            'payment_status' => $reservation->payement_status,
         ]);
         $reservation->delete();
+        //dd('Data in "histories" table:', History::all());
+        //$reservation->delete();
+        //return redirect('admin/checkout')->with('success', 'Checkout completed successfully.');
+
+
 
         return redirect('admin/checkout')->with('success', 'Checkout completed successfully.');
+
+
     }
+
     if($reservation->payement_status == 'pending'){
         $errortype='Payment has not been completed !';
+        return redirect('admin/checkout')->with(['error' => 'Unable to check out for this booking.', 'errortype'=>$errortype]);
     }
 
 
-    return redirect('admin/checkout')->with(['error' => 'Unable to check out for this booking.', 'errortype'=>$errortype]);
+
 }
 
 

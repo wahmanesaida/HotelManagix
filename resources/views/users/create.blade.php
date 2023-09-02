@@ -1,11 +1,12 @@
-<!-- Begin Page Content -->
-<div class="container-fluid">
+@extends('layouts.admin')
+
+@section('content')
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-success">Users
-            <a href="{{url('admin/users/create')}}" class="float-end btn btn-info btn-sm">Add Admin</a>
+            <a href="{{url('admin/users')}}" class="float-end btn btn-info btn-sm">View All</a>
         </h6>
     </div>
     <div class="card-body">
@@ -36,24 +37,24 @@
                     <div class="grid grid-cols-12 gap-x-5 mt-5">
                     <div class="col-span-12 2xl:col-span-6 mt-5">
                         <div>
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name" class="form-label" style="color:black;"> <b>Name</b> </label>
                             <input id="name" type="text" class="form-control" name="name" placeholder="Entrer un nom" value="{{ old('name') ?? '' }}" required>
                         </div>
                         <div class="mt-3.5">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="email" class="form-label" style="color:black;"> <b>Email</b> </label>
                             <input id="email" type="email" class="form-control" name="email" placeholder="Entrer un email" value="{{ old('email') ?? '' }}" required>
                         </div>
                     </div>
                     <div class="col-span-12 2xl:col-span-6 mt-5">
                         <div>
-                            <label for="update-profile-form-1" class="form-label">Role</label>
+                            <label for="update-profile-form-1" class="form-label" style="color:black;"> <b>Role</b> </label>
                             <select class="form-select sm:mr-2" name="role_as"required>
                                 <option value="1">Admin</option>
                                 <option value="0">user</option>
                             </select>
                         </div>
                         <div>
-                            <label class="form-label">Password</label>
+                            <label class="form-label" style="color:black;"> <b>Password</b> </label>
                             <input type="password" name="password" class="form-control" required>
                         </div>
                     </div>
@@ -100,5 +101,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+@endsection
 
 

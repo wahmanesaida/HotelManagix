@@ -197,10 +197,11 @@ class ReservationController extends Controller
             $reservation->save();
             return redirect()->back()->with('success', 'Reservation successfully validated.');
         }
-        if($reservation->rooms->room_status == 'Occupied'){
+        else{
             $error='Validation failed: Room is currently occupied !';
+            return redirect()->back()->with('error',  $error);
+
         }
-        return redirect()->back()->with(['error' => $error]);
 
 
 }

@@ -42,7 +42,7 @@ class UsersController extends Controller
     $newuser = new User;
     $newuser->name = $request->name;
     $newuser->email = $request->email;
-    $newuser->password = md5($request->password);; // Générer un mot de passe aléatoire, vous pouvez modifier cela en fonction de vos besoins.
+    $newuser->password = md5($request->password);; 
 
     if ($request->role_as == 'Admin') {
         $newuser->role_as = 1;

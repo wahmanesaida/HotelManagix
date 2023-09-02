@@ -1,10 +1,10 @@
-<!-- Begin Page Content -->
-<div class="container-fluid">
+@extends('layouts.admin')
+@section('content')
 
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-success">Check Out Process</h6>
+        <h6 class="m-0 font-weight-bold text-info">Check Out Process</h6>
     </div>
     <div class="card-body">
         @if(Session::has('error'))
@@ -16,6 +16,9 @@
         @if(Session::has('success'))
         <p class="text-success">{{session('success')}}</p>
         @endif
+        <div class="form-group search-container col-xl-8">
+            <input type="text" id="search-email" class="form-control" placeholder="Search by email" style="background:#B0AC97">
+        </div>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -68,8 +71,7 @@
     </div>
 </div>
 
-</div>
-<!-- /.container-fluid -->
+
 
 
 
@@ -77,4 +79,27 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<script>
+ $(document).ready(function() {
+    $('#search-email').on('input', function() {
+        var searchTerm = $(this).val().toLowerCase();
+        filterUsers(searchTerm);
+    });
+});
+
+function filterUsers(searchTerm) {
+    $('table tbody tr').each(function() {
+        var userEmail = $(this).find('td:nth-child(2)').text().toLowerCase();
+        if (userEmail.includes(searchTerm) || userEmail.includes('@' + searchTerm)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+}
+
+    </script>
+@endsection
 

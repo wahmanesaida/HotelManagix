@@ -1,7 +1,12 @@
+@extends('layouts.admin')
+
+@section('content')
+
 <!-- Begin Page Content -->
-<div class="container-fluid">
+
 
 <!-- DataTales Example -->
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-success">Users
@@ -15,16 +20,19 @@
         @if(Session::has('success'))
         <p class="text-success">{{session('success')}}</p>
         @endif
+        <div class="form-group search-container col-xl-8">
+            <input type="text" id="search-email" class="form-control" placeholder="Search by email" style="background:#B0AC97">
+        </div>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Photo</th>
-                        <th>Role</th>
-                        <th>Action</th>
+                        <th> <b>id</b></th>
+                        <th> <b>Name</b> </th>
+                        <th> <b>Email</b></th>
+                        <th> <b>Photo</b> </th>
+                        <th> <b>Role</b> </th>
+                        <th> <b>Action</b> </th>
                     </tr>
                 </thead>
 
@@ -67,7 +75,7 @@
     </div>
 </div>
 
-</div>
+
 <!-- /.container-fluid -->
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -109,6 +117,31 @@ $(document).ready(function() {
         showAllRows();
         $(this).hide(); // Hide the button after clicking
     });
+
 });
 </script>
+<script>
+ $(document).ready(function() {
+    $('#search-email').on('input', function() {
+        var searchTerm = $(this).val().toLowerCase();
+        filterUsers(searchTerm);
+    });
+});
+
+function filterUsers(searchTerm) {
+    $('table tbody tr').each(function() {
+        var userEmail = $(this).find('td:nth-child(3)').text().toLowerCase();
+        if (userEmail.includes(searchTerm) || userEmail.includes('@' + searchTerm)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+}
+
+
+
+</script>
+
+@endsection
 

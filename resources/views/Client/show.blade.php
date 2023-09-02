@@ -1,11 +1,11 @@
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
+@extends('layouts.admin')
+@section('content')
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-success">Client
-                <a href="{{url('admin/client')}}" class="float-end btn btn-success btn-sm">View All Clients</a>
+            <h6 class="m-0 font-weight-bold text-info">{{$data->name}}
+                <a href="{{url('admin/client')}}" class="float-end btn btn-info btn-sm">View All Clients</a>
             </h6>
         </div>
         <div class="card-body">
@@ -50,8 +50,7 @@
         </div>
     </div>
 
-    </div>
-    <!-- /.container-fluid -->
+   
 
 
 
@@ -60,5 +59,5 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
-
+@endsection
 

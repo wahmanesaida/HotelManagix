@@ -1,18 +1,21 @@
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
+@extends('layouts.admin')
+@section('content')
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-success">Clients
-            <a href="{{url('admin/client/create')}}" class="float-end btn btn-success btn-sm">Add New Client</a>
+        <h6 class="m-0 font-weight-bold text-info">Clients
+            <a href="{{url('admin/client/create')}}" class="float-end btn btn-info btn-sm">Add New Client</a>
         </h6>
     </div>
     <div class="card-body">
         @if(Session::has('success'))
         <p class="text-success">{{session('success')}}</p>
         @endif
+        <div class="form-group search-container col-xl-8">
+            <input type="text" id="search-email" class="form-control" placeholder="Search by email" style="background:#B0AC97">
+        </div>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -32,7 +35,7 @@
                     @if($data)
                         @foreach($data as $client)
                         <tr>
-                            
+
                             <td>{{$client->name}}</td>
                             <td>{{$client->email}}</td>
                             <td>{{$client->phone}}</td>
@@ -65,5 +68,28 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
+<script>
+ $(document).ready(function() {
+    $('#search-email').on('input', function() {
+        var searchTerm = $(this).val().toLowerCase();
+        filterUsers(searchTerm);
+    });
+});
 
+function filterUsers(searchTerm) {
+    $('table tbody tr').each(function() {
+        var userEmail = $(this).find('td:nth-child(2)').text().toLowerCase();
+        if (userEmail.includes(searchTerm) || userEmail.includes('@' + searchTerm)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+}
+
+
+
+    </script>
+
+@endsection
 
