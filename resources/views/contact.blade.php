@@ -85,4 +85,5 @@
             </div>
         </section><!-- End Contact Section -->
 </section>
+@include('footer')
 @endsection('content')

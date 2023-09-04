@@ -1,7 +1,17 @@
-@include('header');
+@extends('layouts.app')
+@section('content')
 
-<link rel="stylesheet" href="css/animate.css">
-
+<section class="home1-banner-area" id="home">
+      <div class="container h-100">
+        <div class="home1-banner">
+          <div class="text-center">
+            <h4>See What a Difference a stay makes</h4>
+            <h1>HotelManagix</h1>
+            <a class="button home-banner-btn" href="#">Book Now</a>
+          </div>
+        </div>
+      </div>
+</section>
 
 
 <section class="section-margin">
@@ -58,6 +68,9 @@
 </div>
 </div>
 </div>
+</section>
+@include('footer')
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+@endsection

@@ -188,7 +188,7 @@ class ReservationController extends Controller
 {
         $reservation = Reservation::with('rooms')->findOrFail($id);
 
-        if ($reservation->rooms->room_status == 'Vacant') {
+        if ($reservation->rooms->room_status == 'available') {
             // Envoyez un e-mail de validation
             Mail::to($reservation->clients->email)->send(new ReservationValidationMail($reservation));
 

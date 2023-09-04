@@ -48,4 +48,5 @@
         </section>
     </div>
     </section>
+    @include('footer')
 @endsection

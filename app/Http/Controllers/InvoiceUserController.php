@@ -45,8 +45,10 @@ class InvoiceUserController extends Controller
 
 
     public function getInfo(Request $request, $client_id){
+
         $info = DB::select("SELECT id FROM reservations WHERE client_id = $client_id");
         return response()->json(['data' => $info]);
+
     }
 
 
@@ -55,6 +57,7 @@ class InvoiceUserController extends Controller
 
     public function getInvoice(Request $request, $client_id, $reservation_id)
 {
+
     session(['client_id' => $client_id, 'reservation_id' => $reservation_id]);
     $reservation = Reservation::with('rooms', 'rooms.Roomtype')
         ->where('client_id', $client_id)
@@ -125,6 +128,7 @@ public function paymentSuccess(Request $request)
 {
 
     $reservation_id = session('reservation_id');
+    
     $reservation=Reservation::find($reservation_id);
     //dd($reservation);
 
@@ -136,6 +140,7 @@ public function paymentSuccess(Request $request)
 
 public function paymentFail(Request $request)
 {
+    return redirect('/invoice')->with('error', 'erreuuuuuur');
 
 }
 

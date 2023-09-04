@@ -24,10 +24,10 @@
             <th>CIN</th>
             <th>Room type</th>
             <th>Room</th>
-            <th>checkin</th>
+            <th>checkin date</th>
             <th>Check out date</th>
             <th>payement</th>
-            <th>Action</th>
+
         </tr>
     </thead>
 
@@ -37,15 +37,13 @@
                 <tr>
                     <td>{{$dt->id}}</td>
                     <td>{{$dt->email}}</td>
-                    <td>{{$dt->clients->CIN}}</td>
-                    <td>{{$dt->rooms->Roomtype->title}}</td>
-                    <td>{{$dt->rooms->title}}</td>
-                    <td>{{$dt->checkin}}</td>
+                    <td>{{$dt->CIN}}</td>
+                    <td>{{$dt->room_type}}</td>
+                    <td>{{$dt->room}}</td>
+                    <td>{{$dt->checkin_date}}</td>
                     <td>{{$dt->checkout_date}}</td>
-                    <td>{{$dt->payement_status}}</td>
-                    <td>
-                        <a href="{{ route('processCheckout', $dt->id) }}" class="btn btn-success btn-sm"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-                    </td>
+                    <td>{{$dt->payment_status}}</td>
+                   
                 </tr>
             @endforeach
         @else

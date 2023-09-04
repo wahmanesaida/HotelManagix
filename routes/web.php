@@ -46,6 +46,11 @@ Route::resource('/Booking_customer', CustomerReservationController::class);
 
 // Invoice_customer
 Route::get('/Invoice', [InvoiceUserController::class, 'index']);
+Route::get('/invoice/get-reservation-info/{client_id}', [InvoiceUserController::class, 'getInfo']);
+Route::get('/invoice/get-reservation-info/{client_id}/{reservation_id_placeholder}', [InvoiceUserController::class, 'getInvoice']);
+Route::post('/process-payment/{client_id}/{reservation_id}', [InvoiceUserController::class, 'processPayment']);
+Route::get('/payment/success', [InvoiceUserController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('/payment/fail', [InvoiceUserController::class, 'paymentFail'])->name('payment.fail');
 Route::get('/contact', [HomeController::class, 'contact']);
 
 

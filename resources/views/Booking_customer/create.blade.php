@@ -16,7 +16,7 @@
         <section class="section-margin">
         <div class="container">
 
-          <p>L'ID de l'utilisateur connecté est : {{ auth()->user()->id }}</p>
+          <!--<p>L'ID de l'utilisateur connecté est : {{ auth()->user()->id }}</p> -->
         @if($errors->any())
             @foreach($errors->all() as $error)
                 <p class="text-danger">{{$error}}</p>
@@ -92,6 +92,9 @@
         </form>
 
     </div>
+</div>
+</section>
+    @include('footer')
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
 

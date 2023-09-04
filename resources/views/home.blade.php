@@ -16,7 +16,7 @@
           </form>
         </div>
       </div> -->
-    
+
 
 	<!-- ================ header section end ================= -->
 
@@ -211,4 +211,6 @@
         </div>
       </div>
     </section>
+    @include('footer')
 @endsection
+

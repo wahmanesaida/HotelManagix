@@ -39,6 +39,7 @@
           <div class="text-center">
             <i class="fab fa-mdb fa-4x ms-0" style="color:#5d9fc5 ;"></i>
             <p class="pt-0"><b><h1>HotelManagix</h1></b></p>
+
           </div>
 
         </div>
@@ -48,6 +49,9 @@
 
           @if(Session::has('success'))
             <p class="text-success">{{session('success')}}</p>
+            @endif
+            @if(Session::has('error'))
+            <p class="text-success">{{session('error')}}</p>
             @endif
           </div>
           <div class="col-xl-4">
@@ -65,7 +69,7 @@
 
         <div class="row my-2 mx-1 justify-content-center">
 
-            <form action="{{url('admin/process-payment/{client_id}/{reservation_id}')}}" method="post">
+            <form action="{{url('process-payment/{client_id}/{reservation_id}')}}" method="post">
                 @csrf
                 <table class="table table-striped table-borderless">
                     <tr>
@@ -85,7 +89,7 @@
                                 @endif
                              @endforeach
                              @else
-                             <option value="{{ $reservation->clients->id }}">
+                             <option value="">
                              At the moment, there is no reservation under your name.
                             </option>
                             @endif
@@ -96,19 +100,23 @@
                     <tr>
                         <th style="background-color:#CCA772;">Reservation Id</th>
                         <td>
+                        @if(isset($reservations))
                             <select name="reservation_id_placeholder" id="reservation_id_placeholder" class="form-control">
-                            @if(isset($reservations))
+
                               @if($reservation->payement_status == 'paid')
-                              <option value="" selected> this reservation already paid</option>
+                                <option value="" selected> this reservation already paid</option>
                               @else
+
                                 <option value="" selected>Available reservation</option>
+
                               @endif
-                              @else
-                                <option value="" selected>
+                            @else
+                            <option value="" selected>
                              At the moment, there is no reservation!
-                                </option>
-                            @endif
+                            </option>
+
                             </select>
+                        @endif
                         </td>
                     </tr>
                     <tr></tr>
@@ -167,7 +175,7 @@
           <div class="col-xl-10">
             <p>Thank you for your purchase</p>
           </div>
-          
+
 
         </div>
 
@@ -176,7 +184,7 @@
     </div>
   </div>
 </div>
-
+@include('footer')
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script type="text/javascript">
@@ -184,7 +192,7 @@ $(document).ready(function(){
     $("#client_id").on('blur', function(){
         var selectedClientId = $(this).val();
         $.ajax({
-            url: "{{ url('admin/invoice/get-reservation-info') }}/" + selectedClientId,
+            url: "{{ url('/invoice/get-reservation-info') }}/" + selectedClientId,
             dataType: 'json',
             beforeSend: function(){
 
@@ -193,6 +201,7 @@ $(document).ready(function(){
             success: function(res){
                 var _idContenu = '';
                 $.each(res.data, function(index, row){
+
                     _idContenu += '<option value="'+row.id+'">'+ row.id + '</option>';
                 });
                 $("#reservation_id_placeholder").html(_idContenu);
@@ -207,7 +216,7 @@ $(document).ready(function(){
             var selectedClientId = $("#client_id").val();
             if (selectedReservation !== '') {
                 $.ajax({
-                    url: "{{ url('admin/invoice/get-reservation-info') }}/" + selectedClientId + "/" + selectedReservation,
+                    url: "{{ url('/invoice/get-reservation-info') }}/" + selectedClientId + "/" + selectedReservation,
                     dataType: 'json',
                     success: function(res){
                         var _departuredate = '';
