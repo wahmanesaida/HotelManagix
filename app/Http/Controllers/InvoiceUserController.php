@@ -110,9 +110,9 @@ public function processPayment(Request $request, $client_id, $reservation_id)
             'quantity' => 1,
         ]],
         'mode' => 'payment',
-        'success_url' => route('payment.success'),
+        'success_url' => route('paymentuser.success'),
 
-        'cancel_url' => route('payment.fail'),
+        'cancel_url' => route('paymentuser.fail'),
     ]);
 
 
@@ -122,20 +122,18 @@ public function processPayment(Request $request, $client_id, $reservation_id)
 
 
 
-
-
 public function paymentSuccess(Request $request)
 {
 
     $reservation_id = session('reservation_id');
-    
+
     $reservation=Reservation::find($reservation_id);
     //dd($reservation);
 
     $reservation->payement_status = "paid";
     $reservation->save();
 
-    return redirect('/invoice')->with('success', 'congratulations payment made successfully');
+    return redirect()->back()->with('success', 'congratulations payment made successfully');
 }
 
 public function paymentFail(Request $request)

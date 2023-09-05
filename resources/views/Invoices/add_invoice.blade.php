@@ -1,9 +1,7 @@
 @extends('layouts.admin')
 @section('content')
+<
 <div class="card">
-
-    <p class="text-danger" id="affiche"></p>
-
   <div class="card-body">
     <div class="container mb-5 mt-3">
       <div class="row d-flex align-items-baseline">
@@ -126,7 +124,7 @@
           <div class="col-xl-10">
             <p>Thank you for your purchase</p>
           </div>
-          
+
 </div>
 
         </div>
@@ -135,7 +133,8 @@
       </div>
     </div>
   </div>
-</div>
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>

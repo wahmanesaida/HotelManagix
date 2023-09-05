@@ -23,7 +23,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Booking Number</th>
+                        <th>Booking</th>
                         <th>Email</th>
                         <th>CIN</th>
                         <th>Room type</th>

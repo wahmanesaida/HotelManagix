@@ -25,7 +25,7 @@
                         </tr>
                         <tr>
                             <th>Description</th>
-                            <td><textarea name="description" class="form-control" cols="30" rows="14"></textarea></td>
+                            <td><textarea name="description" class="form-control" cols="30" rows="2"></textarea></td>
                         </tr>
                         <tr>
                             <th>Price</th>
